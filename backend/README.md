@@ -271,13 +271,13 @@ redis_host=localhost
 redis_port=6379
 ```
 
-### CORS Origins
+#### CORS Origins
 ```
 dev_url=http://localhost:3000  
 prod_url=https://your-frontend-domain.com  
 ```
 
-### Face Recognition Thresholds
+#### Face Recognition Thresholds
 ```
 face_attendance_similarity_threshold=0.6  
 eye_mouth_thresh=0.4  
