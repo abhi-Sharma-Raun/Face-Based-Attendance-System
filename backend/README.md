@@ -73,7 +73,7 @@ They can then create an account with a user ID and password (/create_user).
 
 <table>
   <tr>
-    <th>Method</th>
+    <th> Method</th>
     <th>Endpoint</th>
     <th>Description</th>
     <th>Auth Required</th>
@@ -236,8 +236,60 @@ Now to run the project locally first you need to clone this repository install n
 5.Run the application  
 `uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload`
 
+## Set up Environment variables
 
-  
+To run this project, you will need to add the following environment variables to your .env file.The .env file must be present in the root directory(backend).
+You can use config.py as reference for environment variables.
+
+#### Database Credentials
+```
+database_username=your_postgres_user  
+database_password=your_postgres_password  
+database_hostname=localhost  
+database_port=5432  
+database_name=your_db_name  
+```
+
+#### JWT Settings
+```
+SECRET_KEY=your_super_secret_key  
+ALGORITHM=HS256  
+ACCESS_TOKEN_EXPIRE_MINUTES=60  
+```
+
+#### Email Credentials 
+```
+# This email id is used to send emails to user's accounts for otp,account-confirmation, email-verification,etc.
+
+email_Id=your_gmail_address@gmail.com  
+email_id_app_password=your_gmail_app_password  
+```
+
+#### Redis Connection
+```
+redis_host=localhost  
+redis_port=6379
+```
+
+### CORS Origins
+```
+dev_url=http://localhost:3000  
+prod_url=https://your-frontend-domain.com  
+```
+
+### Face Recognition Thresholds
+```
+face_attendance_similarity_threshold=0.6  
+eye_mouth_thresh=0.4  
+eye_angle_thresh=10.0  
+jawline_symmetry_thresh=8.0  
+nose_mouth_ratio_lower=1.5  
+nose_mouth_ratio_upper=2.5
+```
+
+
+
+
 
 
 
