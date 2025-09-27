@@ -24,7 +24,7 @@ def fetch_attendance_rollno(roll_no:str, db: Session = Depends(get_db), current_
     student = db.query(models.Students).filter((models.Students.teacher_id == current_user_id) & (models.Students.roll_no == roll_no)).first()
     
     if student is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="the teacher has no student")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="the teacher has no student with this roll number")
     
     try:
         attendance = db.query(models.Attendance).filter(models.Attendance.student_id == student.student_id).all()
@@ -43,7 +43,7 @@ def fetch_attendance(db: Session = Depends(get_db), current_user: schemas.verifi
     students = db.query(models.Students).filter((models.Students.teacher_id == current_user_id)).all()
     
     if students is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"There is no students")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"The teacher has no students")
     
     result = []
     

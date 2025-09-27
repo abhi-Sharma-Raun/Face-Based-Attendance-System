@@ -233,7 +233,7 @@ Now to run the project locally first you need to clone this repository install n
 `source venv/bin/activate`  
 `pip install -r requirements.txt`
 
-5.Run the application  
+5. Run the application  
 `uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload`
 
 ## Set up Environment variables

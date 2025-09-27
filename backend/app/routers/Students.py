@@ -186,6 +186,7 @@ def delete_students(roll_no: str, db: Session = Depends(get_db), current_user: s
             raise HTTPException(status_code = status.HTTP_404_NOT_FOUND, detail="Student not found")
     
         student_query.delete(synchronize_session = False)
+        db.commit()
     except Exception as e:
         raise HTTPException(status_code = status.HTTP_500_INTERNAL_SERVER_ERROR, detail = f"Error deleting student: {str(e)}")
     

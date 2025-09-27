@@ -31,10 +31,10 @@ def delete_otp(email: str):
 
 # add otp cooldown later
 
-def send_otp_email(email: str, otp: str):
+def send_otp_email(email: str, otp: str, subject: str):
     
     msg = EmailMessage()
-    msg["Subject"] = "Your OTP for Email Verification"
+    msg["Subject"] = f"{subject}"
     msg["From"] = f"{settings.email_Id}"
     msg["To"] = email
     
@@ -51,7 +51,7 @@ def send_otp_email(email: str, otp: str):
     try:
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
             
-            server.login(f"{settings.email_id}", f"{settings.email_id_app_password}")
+            server.login(f"{settings.email_Id}", f"{settings.email_id_app_password}")
             failed_recipients = server.send_message(msg)
             if failed_recipients:                
                 raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Failed to send email to the email id.")
@@ -60,13 +60,13 @@ def send_otp_email(email: str, otp: str):
         
 
         
-def send_otp(email: str):
+def send_otp(email: str, subject: str = "Your OTP for Email Verification"):
     
     otp = generate_otp()
     store_otp(email, otp)
     
     try:
-        send_otp_email(email, otp)
+        send_otp_email(email, otp, subject)
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Unexpected Error: {str(e)}")
     

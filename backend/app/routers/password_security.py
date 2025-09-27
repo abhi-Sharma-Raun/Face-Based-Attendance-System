@@ -17,7 +17,8 @@ def forgot_password(email_input: schemas.EmailSchema, db: Session = Depends(get_
         raise HTTPException(status_code = status.HTTP_404_NOT_FOUND, details = "There is no account with that email")
     
     try:
-        utils.send_otp(email)
+        subject = "Your OTP for Password Reset"
+        utils.send_otp(email, subject)
     except:
         raise HTTPException(status_code = status.HTTP_500_INTERNAL_SERVER_ERROR, details=f"Unexpected Error")
     

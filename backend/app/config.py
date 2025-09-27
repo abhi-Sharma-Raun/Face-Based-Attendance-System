@@ -14,7 +14,8 @@ class Settings(BaseSettings):
     email_id_app_password: str
     redis_host: str
     redis_port: int
-    dev_url: str
+    dev_url_1: str
+    dev_url_2: str
     prod_url: str
     face_attendance_similarity_threshold: float
     eye_mouth_thresh: float

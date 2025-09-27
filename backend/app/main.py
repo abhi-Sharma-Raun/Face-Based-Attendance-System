@@ -19,7 +19,7 @@ app.include_router(delete_account.router)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins = [f"{settings.dev_url}", f"{settings.prod_url}"],
+    allow_origins = [f"{settings.dev_url_1}", f"{settings.prod_url}", f"{settings.dev_url_2}"],
     allow_credentials = True,
     allow_methods = ["*"],
     allow_headers = ["*"]
