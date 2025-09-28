@@ -1,0 +1,150 @@
+/* --- Basic Styles --- */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* --- Header Styles (Copied from dashboard.css for consistency) --- */
+.dashboard-header {
+    background-color: #ffffff;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.dashboard-header h1 {
+    font-size: 1.8em;
+    color: #3498db;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.back-button {
+    background-color: #95a5a6;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.back-button:hover {
+    background-color: #7f8c8d;
+}
+
+/* --- All Students List Page Styles --- */
+.management-container {
+    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.management-card {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    padding: 30px;
+}
+
+.student-list-panel h2 {
+    margin-bottom: 20px;
+    color: #3498db;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+/* --- Search Bar Styles --- */
+.search-container {
+    margin-bottom: 25px;
+}
+
+#search-bar {
+    width: 80%;
+    padding: 12px 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+}
+
+#search-bar:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+}
+
+.placeholder-text {
+    color: #777;
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 1.1em;
+}
+.placeholder-text.error {
+    color: #e74c3c;
+    font-weight: 500;
+}
+
+.student-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    border: 1px solid #eee;
+    transition: all 0.2s ease-in-out;
+}
+.student-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-left: 3px solid #3498db;
+}
+.student-item:last-child {
+    margin-bottom: 0;
+}
+
+.student-item span {
+    font-weight: 500;
+}
+
+/* --- Responsive Styles --- */
+@media (max-width: 600px) {
+    .dashboard-header {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    .dashboard-header h1 {
+        font-size: 1.5em;
+    }
+    .management-container {
+        padding: 20px;
+    }
+    .management-card {
+        padding: 20px;
+    }
+    .student-item span {
+        font-size: 0.9em;
+    }
+}
+

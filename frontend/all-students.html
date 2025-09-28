@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Students</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/all-students.css">
+</head>
+<body>
+    <header class="dashboard-header">
+        <h1>All Enrolled Students</h1>
+        <div class="header-buttons">
+            <a href="manage-students.html" class="back-button">Back to Manage</a>
+        </div>
+   </header>
+
+    <main class="management-container">
+        <div class="management-card">
+            <div class="student-list-panel">
+                <h2>Student List</h2>
+
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <input type="text" id="search-bar" placeholder="Search by Roll Number...">
+                </div>
+
+                <div id="student-list-container">
+                    <p class="placeholder-text">Loading students...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script type="module" src="src/all-students.js"></script>
+</body>
+</html>
+

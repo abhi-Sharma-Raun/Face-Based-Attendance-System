@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Attendance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/mark-attendance.css">
+</head>
+<body>
+    <header class="dashboard-header">
+        <h1>Mark Attendance</h1>
+        <a href="dashboard.html" class="back-button">Back to Dashboard</a>
+    </header>
+
+    <main class="attendance-container">
+        <div class="attendance-card">
+            <h2>Upload Class Photo</h2>
+            <form id="attendance-form">
+                <!-- Image Preview Area -->
+                <div id="image-preview-container">
+                    <img src="" alt="Image Preview" id="image-preview" class="d-none">
+                    <span id="preview-text">Only .jpg files are accepted</span>
+                </div>
+
+                <!-- Custom File Upload Button -->
+                <label for="image-upload" class="upload-label">
+                    Choose Image
+                </label>
+                <input type="file" id="image-upload" accept="image/jpeg" required>
+
+                <button type="submit" id="submit-button" class="submit-button" disabled>Upload and Mark</button>
+            </form>
+            <div id="response-message" class="message-area"></div>
+        </div>
+    </main>
+
+    <script type="module" src="src/mark-attendance.js"></script>
+</body>
+</html>

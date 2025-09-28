@@ -1,0 +1,189 @@
+.model-loading {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(237, 234, 234, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  z-index: 9999;
+}
+
+.register-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.register-input img {
+  width: 160px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #eee;
+  margin-bottom: 1rem;
+}
+
+.register-input button {
+  min-width: 120px;
+  font-size: 1rem;
+  padding: 0.5rem 1.5rem;
+}
+
+
+.video-processing {
+    position: relative;
+    top: 80px;
+    width: 512px;   
+    height: 480px;
+}
+
+.mark-face-frames,
+.video-frames{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.mark-face-frames {
+    z-index: 2;
+}
+
+.video-frames {
+    z-index: 1;
+}
+
+.display-cover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    margin: 5% auto;
+    position: relative;
+}
+
+video {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.video-options {
+    position: absolute;
+    left: 20px;
+    top: 30px;
+}
+
+.controls {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    display: flex;
+}
+
+.controls > button {
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    border-radius: 100%;
+    margin: 0 6px;
+    background: transparent;
+}
+
+.controls > button:hover svg {
+    color: white !important;
+}
+
+@media (min-width: 300px) and (max-width: 400px) {
+    .controls {
+        flex-direction: column;
+    }
+
+    .controls button {
+        margin: 5px 0 !important;
+    }
+}
+
+.controls > button > svg {
+    height: 20px;
+    width: 18px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.controls button:nth-child(1) {
+    border: 2px solid #D2002E;
+}
+
+.controls button:nth-child(1) svg {
+    color: #D2002E;
+}
+
+.controls button:nth-child(2) {
+    border: 2px solid #008496;
+}
+
+.controls button:nth-child(2) svg {
+    color: #008496;
+}
+
+.controls > button {
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    border-radius: 100%;
+    margin: 0 6px;
+    background: transparent;
+}
+
+.controls > button:hover svg {
+    color: white;
+}
+
+
+input[disabled] {
+    background-color: #faf8f8 !important;
+    color: #222 !important;
+    opacity: 1 !important;
+    border: 1px solid #ccc;
+}
+
+
+.input-group input{
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 1rem;
+    border-radius: 4px;
+    margin-top: 4px;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+}
+
+/* --- Message Area --- */
+.message-area {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: 500;
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+    display: none; /* Hidden by default */
+}
+
+.message-area.success {
+    background-color: #e8f5e9; /* Light green */
+    color: #2e7d32; /* Dark green */
+    display: block;
+}
+
+.message-area.error {
+    background-color: #ffebee; /* Light red */
+    color: #c62828; /* Dark red */
+    display: block;
+}

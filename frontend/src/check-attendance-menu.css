@@ -1,0 +1,110 @@
+/* --- Basic Styles --- */
+/* NEW: Universal box-sizing for predictable layouts */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* --- Header Styles --- */
+.dashboard-header {
+    background-color: #ffffff;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.dashboard-header h1 { font-size: 1.8em; color: #3498db; }
+.back-button {
+    background-color: #95a5a6;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+.back-button:hover { background-color: #7f8c8d; }
+
+/* --- Main Content --- */
+.attendance-menu-container {
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 10vh;
+    flex-wrap: wrap;
+}
+
+.menu-card {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+    max-width: 350px;
+    color: #333;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.menu-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(52, 152, 219, 0.2);
+}
+
+.card-icon svg {
+    width: 60px;
+    height: 60px;
+    fill: #3498db;
+    margin-bottom: 20px;
+}
+
+.menu-card h2 {
+    font-size: 1.6em;
+    margin-bottom: 10px;
+}
+
+.menu-card p {
+    color: #777;
+    line-height: 1.6;
+}
+
+/* --- UPDATED Responsive Styles --- */
+@media (max-width: 768px) {
+    .dashboard-header {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        /* NEW: Explicitly center content */
+        justify-content: center;
+        align-items: center;
+    }
+
+    .dashboard-header h1 {
+        font-size: 1.5em;
+    }
+
+    .attendance-menu-container {
+        flex-direction: column;
+        margin-top: 5vh;
+        gap: 25px;
+        padding: 20px;
+    }
+
+    .menu-card {
+        max-width: 100%;
+    }
+}
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance by Roll Number</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/attendance-by-roll.css">
+</head>
+<body>
+    <header class="dashboard-header">
+        <h1>Attendance by Roll Number</h1>
+        <a href="check-attendance-menu.html" class="back-button">Back to Menu</a>
+    </header>
+
+    <main class="attendance-container">
+        <div class="attendance-card">
+            <h2>Find Student Records</h2>
+            <form id="attendance-form">
+                <div class="input-group">
+                    <label for="roll-no">Student Roll Number <span class="required">*</span></label>
+                    <input type="text" id="roll-no" placeholder="Enter roll number" required>
+                </div>
+                <div class="date-group">
+                    <div class="input-group">
+                        <label for="start-date">Start Date (Optional)</label>
+                        <input type="date" id="start-date">
+                    </div>
+                    <div class="input-group">
+                        <label for="end-date">End Date (Optional)</label>
+                        <input type="date" id="end-date">
+                    </div>
+                </div>
+                <button type="submit" id="submit-button" class="submit-button">Get Records</button>
+            </form>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results-container" class="results-card d-none">
+            <h3>Attendance for Roll No: <span id="result-roll-no"></span></h3>
+            <div id="attendance-list">
+                <!-- Data will be populated here by JS -->
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="src/attendance-by-roll.js"></script>
+</body>
+</html>

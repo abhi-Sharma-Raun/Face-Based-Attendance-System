@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+    <main class="container">
+        <!-- Form Panel -->
+        <div class="login-panel">
+            <div class="login-card">
+                <!-- Step 1: Enter Email -->
+                <div class="form-step active" id="step1">
+                    <header class="login-header">
+                        <h1>Verify Your Email</h1>
+                    </header>
+                    <p class="otp-info" style="margin-top: 15px;">Enter your email to receive a verification OTP.</p>
+                    <form id="sendOtpForm">
+                        <div class="input-group">
+                            <svg class="icon" fill="currentColor" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
+                            <input type="email" id="verificationEmail" placeholder="Email" required>
+                        </div>
+                        <button type="submit" class="login-button">GET OTP</button>
+                    </form>
+                    <p class="back-to-login"><a href="register.html">Back to Registration</a></p>
+                </div>
+
+                <!-- Step 2: Verify OTP -->
+                <div class="form-step" id="step2">
+                    <header class="login-header">
+                        <h1>Enter OTP</h1>
+                    </header>
+                    <p class="otp-info">An OTP was sent to <b id="userEmailDisplay">your.email@example.com</b></p>
+                    <form id="verifyOtpForm">
+                        <div class="input-group">
+                            <svg class="icon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1.5A8.5 8.5 0 003.5 10c0 4.16 3.02 7.63 7 8.35V22h1v-3.65c3.98-.72 7-4.19 7-8.35A8.5 8.5 0 0012 1.5zm0 15c-3.58 0-6.5-2.92-6.5-6.5S8.42 3.5 12 3.5s6.5 2.92 6.5 6.5-2.92 6.5-6.5 6.5zM11 6h2v6h-2z m0 7h2v2h-2z"></path></svg>
+                            <input type="text" id="otp" placeholder="Enter OTP" required maxlength="6">
+                        </div>
+                        <button type="submit" class="login-button">VERIFY EMAIL</button>
+                    </form>
+                </div>
+                
+                <!-- Step 3: Success Message -->
+                <div class="form-step" id="step3">
+                   <svg class="success-icon" viewBox="0 0 52 52">
+                        <circle class="success-icon--circle" cx="26" cy="26" r="25" fill="none"/>
+                        <path class="success-icon--check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                    </svg>
+                    <h2>Email Verified!</h2>
+                    <p>You can now proceed with registration.</p>
+                    <a href="register.html" class="login-button">BACK TO REGISTRATION</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Promotional Panel -->
+        <div class="promo-panel">
+            <div class="promo-content">
+                 <svg class="illustration" viewBox="0 0 300 250" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="0" width="300" height="250" fill="#eaf5ff" rx="15"/>
+                    <rect x="110" y="60" width="80" height="150" rx="10" fill="#333" stroke="#555" stroke-width="2"/>
+                    <rect x="115" y="70" width="70" height="120" rx="5" fill="#fff"/>
+                </svg>
+                <h2>Account Security</h2>
+                <p>Verify your email to secure your account.</p>
+            </div>
+        </div>
+    </main>
+    <script type="module" src="src/email-verification.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Students Attendance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/attendance-all.css">
+</head>
+<body>
+    <header class="dashboard-header">
+        <h1>All Students Attendance</h1>
+        <a href="check-attendance-menu.html" class="back-button">Back to Menu</a>
+    </header>
+
+    <main class="attendance-container">
+        <div class="attendance-card">
+            <h2>Filter and Download Records</h2>
+            <form id="attendance-form">
+                <p class="form-description">Select an optional date range to filter the attendance records before downloading the CSV file.</p>
+                <div class="date-group">
+                    <div class="input-group">
+                        <label for="start-date">Start Date (Optional)</label>
+                        <input type="date" id="start-date">
+                    </div>
+                    <div class="input-group">
+                        <label for="end-date">End Date (Optional)</label>
+                        <input type="date" id="end-date">
+                    </div>
+                </div>
+                <button type="submit" id="fetch-button" class="fetch-button">Show Download Link</button>
+            </form>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results-container" class="results-card d-none">
+            <h3>Download Ready</h3>
+            <p>Your attendance report is ready to be downloaded.</p>
+            <button id="download-button" class="download-button">Download CSV File</button>
+            <div id="response-message" class="message-area"></div>
+        </div>
+    </main>
+
+    <script type="module" src="src/attendance-all.js"></script>
+</body>
+</html>

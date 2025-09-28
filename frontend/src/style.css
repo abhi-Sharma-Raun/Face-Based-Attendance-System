@@ -1,0 +1,261 @@
+/* --- Basic Reset & Setup --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* --- Login Page Single Card Container --- */
+.container {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 5vh auto;
+}
+
+/* --- Left Side: Login/Register Panel --- */
+.login-panel {
+    flex-basis: 50%;
+    padding: 40px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+}
+
+.form-step {
+    display: none;
+}
+.form-step.active {
+    display: block;
+}
+
+.logo-container .logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+}
+
+.login-header {
+    margin-bottom: 25px;
+}
+
+.login-header h1 {
+    font-size: 1.8em;
+    font-weight: 600;
+    color: #555;
+}
+
+/* Form Styling */
+#loginForm, #registerForm, #forgotPasswordForm, #otpForm, #sendOtpForm, #verifyOtpForm, #resetPasswordForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.input-group .icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    fill: #aaa;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px 15px 15px 50px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 1em;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+.login-button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+    text-align: center;
+}
+
+.login-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.login-button:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.success {
+  margin-top: 20px;    /* for styling after otp verification */
+}
+
+/* Bottom Links */
+.links {
+    margin-top: 20px;
+    font-size: 1em;
+}
+
+.forgot-password, .back-to-login, .verification-link {
+    display: block;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.register-link a, .forgot-password a, .back-to-login a, .verification-link a {
+    color: #3498db;
+    font-weight: 600;
+}
+
+.forgot-password:hover, .register-link a:hover, .back-to-login a:hover, .verification-link a:hover {
+    text-decoration: underline;
+}
+
+.otp-info {
+    margin-bottom: 20px;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* --- Right Side: Promo Panel --- */
+.promo-panel {
+    flex-basis: 50%;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.promo-content {
+    text-align: center;
+}
+
+.illustration {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 30px;
+}
+
+.promo-content h2 {
+    font-size: 1.8em;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.promo-content p {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+/* --- Success Animation --- */
+.success-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+}
+.success-icon--circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #4bb71b;
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+.success-icon--check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    stroke: #4bb71b;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+@keyframes stroke {
+    100% { stroke-dashoffset: 0; }
+}
+
+/* --- Responsive Design for Login Page --- */
+@media (max-width: 860px) {
+    body {
+        align-items: flex-start;
+    }
+    .container {
+        flex-direction: column;
+        max-width: 100%;
+        min-height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+        margin: 0;
+    }
+    /* .promo-panel {
+        display: none;
+    }
+    .login-panel {
+        flex-basis: auto;
+        padding: 40px 20px;
+    } */
+
+     /* UPDATED: The promo panel is now visible on mobile */
+    .promo-panel {
+        flex-basis: auto; /* Allow height to be determined by content */
+        padding: 60px 20px; /* Adjust padding for a better look */
+        border-radius: 0;
+    }
+
+    .login-panel {
+        flex-basis: auto;
+        padding: 40px 20px;
+        /* Ensure it takes up enough space */
+        min-height: 60vh;
+    }
+}
+
