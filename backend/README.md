@@ -273,7 +273,8 @@ redis_port=6379
 
 #### CORS Origins
 ```
-dev_url=http://localhost:3000  
+dev_url_1=http://localhost:5500   # if frontend is running using Live Server  
+dev_url_2=http://localhost:5173  # if frontend is running using vite  
 prod_url=https://your-frontend-domain.com  
 ```
 
