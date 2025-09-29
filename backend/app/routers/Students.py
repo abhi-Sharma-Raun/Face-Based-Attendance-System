@@ -14,7 +14,7 @@ router=APIRouter(
 registered_users = []
 
 model_embedding = FaceAnalysis('buffalo_l', providers = ['CUDAExecutionProvider', 'CPUExecutionProvider'], root = 'models')
-model_embedding.prepare(ctx_id=-1, det_size=(320,256), det_thresh=0.5)
+model_embedding.prepare(ctx_id=-1, det_thresh=0.5)
 
 
 eye_angle_threshold = settings.eye_angle_thresh
@@ -155,7 +155,7 @@ async def add_student(
             print(f"DB commit failed: {e}")
             raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"DB error: {e}")
         print("The image is registered succesfully")
-        return {"msg": "The face is registered successfully"}
+        return {"msg": "The Student is registered successfully"}
     else:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Unexpected error during face processing")
      

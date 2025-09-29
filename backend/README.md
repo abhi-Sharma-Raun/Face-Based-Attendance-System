@@ -192,13 +192,13 @@ They can then create an account with a user ID and password (/create_user).
     <td>POST</td>
     <td>/forgot-password-send-otp</td>
     <td>Sends a password reset OTP to the user's email.</td>
-    <td>Yes</td>
+    <td>No</td>
   </tr>
   <tr>
     <td>PUT</td>
     <td>/forgot-password-verify-otp</td>
     <td>Verifies OTP and sets a new password.</td>
-    <td>Yes</td>
+    <td>No</td>
   </tr>
   <tr>
     <td>DELETE</td>
@@ -209,7 +209,7 @@ They can then create an account with a user ID and password (/create_user).
 </table>
 
 
-## Running the project locally(Without Docker)
+## Running the Backend locally(Without Docker)
 
 ### Prerequisites
 
@@ -220,7 +220,6 @@ They can then create an account with a user ID and password (/create_user).
 Now to run the project locally first you need to clone this repository install necessary dependencies and setup environment variables.All the steps for this are shown below--
 
 1. Clone this repository  
-`git clone <https://github.com/abhi-Sharma-Raun/Face-Based-Attendance-System.git>`
 
 2. Go in the backend directory of this cloned repo
 
@@ -229,9 +228,11 @@ Now to run the project locally first you need to clone this repository install n
   Also, you can see the .env file i have put below in this README file.
 
 4. Create a Virtual Environemnt in the backend directory and install all the necessary dependencies  
-`python -m venv venv`
-`source venv/bin/activate`  
-`pip install -r requirements.txt`
+``` 
+python -m venv venv
+source venv/bin/activate  # on windows, use-- `venv\Scripts\activate`
+pip install -r requirements.txt
+```
 
 5. Run the application  
 `uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload`

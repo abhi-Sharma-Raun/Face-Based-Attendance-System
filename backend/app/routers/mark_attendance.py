@@ -15,7 +15,7 @@ router = APIRouter(
     
 
 face_app = FaceAnalysis(name="buffalo_l", providers = ['CUDAExecutionProvider', 'CPUExecutionProvider'], root = 'models')
-face_app.prepare(ctx_id=-1, det_thresh = 0.5)
+face_app.prepare(ctx_id=-1, det_size=(320,256), det_thresh = 0.5)
 
 face_attendance_threshold = settings.face_attendance_similarity_threshold
 
@@ -83,14 +83,13 @@ async def mark_attendance(file: UploadFile = File(...), db: Session=Depends(get_
     marked_ids = set()
     attendance_records = []
     for index, row_num in enumerate(max_similarities):
-        if cosine_similarities[row_num, index] > face_attendance_threshold:    
+        if cosine_similarities[row_num, index] > face_attendance_threshold:
             student_id_attendance = student_objects[row_num].student_id
             if student_id_attendance in marked_ids:
                 continue
             mark_attendance = models.Attendance(student_id = student_id_attendance)
             attendance_records.append(mark_attendance)
             marked_ids.add(student_id_attendance)
-            
        
     if len(attendance_records) != 0:
         try:
