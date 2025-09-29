@@ -18,7 +18,7 @@ export default defineConfig({
         email_verification: resolve(__dirname, 'email-verification.html'),
         attendance_menu:resolve(__dirname, 'check-attendance-menu.html'),
         check_attendance_by_rollno: resolve(__dirname, 'attendance-by-roll.html'),
-        check_all_students_attendance: resolve(__dirname, 'attendance-by-date.html'),
+        check_all_students_attendance: resolve(__dirname, 'attendance-all.html'),
         show_all_students: resolve(__dirname, 'all-students.html'),
         add_student_details: resolve(__dirname, 'add-student-details.html'),
         add_student_final: resolve(__dirname, 'add_student_final.html')
