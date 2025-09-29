@@ -49,7 +49,7 @@ Full_FaceAttendance_System/
 |   |   |   ├── fetch_account.py
 |   |   |   ├── mark_attendance.py
 |   |   |   ├── password_security.py
-|   |   |   ├── students.py 
+|   |   |   └── students.py 
 |   |   |   
 │   │   ├── config.py  
 │   │   ├── database.py  

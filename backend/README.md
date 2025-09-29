@@ -17,7 +17,7 @@ This repository contains the backend service for a real-time, face-based attenda
 
 * **Advanced Face Processing**: Before registering a student's photo, the system performs a liveness/alignment check to ensure high-quality data. It verifies head pose by checking eye-line angle, mouth-to-nose ratio, and jawline symmetry.
 
-* **Real-time Attendance Marking**: Marks attendance for multiple students from a single class photo by detecting and identifying all faces present.
+* **Real-time Efficient Attendance Marking**: Marks attendance for multiple students from a single class photo by detecting and identifying all faces present.The attendance marking is vectorized, highly optimized and efficient avoiding slow iterative loops.
 
 * **Comprehensive Attendance Reporting**: Fetch attendance records for individual students or download a complete attendance report in CSV format for a given date range.
 
