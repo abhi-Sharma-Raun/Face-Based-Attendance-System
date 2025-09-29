@@ -43,6 +43,14 @@ Full_FaceAttendance_System/
 ├── 📁 backend/  
 │   ├── 📁 app/  
 │   │   ├── 📁 routers/  
+|   |   |   ├── auth.py
+|   |   |   ├── create_user.py
+|   |   |   ├── delete_account.py
+|   |   |   ├── fetch_account.py
+|   |   |   ├── mark_attendance.py
+|   |   |   ├── password_security.py
+|   |   |   ├── students.py 
+|   |   |   
 │   │   ├── config.py  
 │   │   ├── database.py  
 │   │   ├── main.py  
@@ -54,7 +62,7 @@ Full_FaceAttendance_System/
 │
 |  
 |── 📁 frontend/  
-|   ├── 📁 public/
+|   ├── 📁 public/  
 |   ├── 📁 src/  
 |   |   ├── *.js
 |   |   └── *.css  
