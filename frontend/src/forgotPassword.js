@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const result = await response.json();
-            if (!response.ok) throw new Error(result.message || 'Failed to change password.');
+            if (!response.ok) throw new Error(result.detail || 'Failed to change password.');
             
             // Transition to success step
             step2.classList.remove('active');

@@ -49,7 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Use HEAD request to check if the resource exists without downloading it
             const response = await fetch(url, {
                 method: 'GET', // More efficient check than GET
-                headers: { 'Authorization': `Bearer ${token}` }
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'ngrok-skip-browser-warning': 'true'
+                }
             });
 
             if (!response.ok) {
