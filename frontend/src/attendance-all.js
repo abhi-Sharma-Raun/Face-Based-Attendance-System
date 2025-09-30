@@ -18,7 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const downloadButton = document.getElementById('download-button');
     const responseMessage = document.getElementById('response-message');
 
-    let currentUrl = ''; // To store the constructed URL for download
+
+    let downloadedBlob = null;    // cache for CSV Blob
+
 
     // 1. Listen for form submission to check for data and show download button
     attendanceForm.addEventListener('submit', async (e) => {
@@ -43,12 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (queryString) {
             url += `?${queryString}`;
         }
-        currentUrl = url; // Store for the download button
 
         try {
-            // Use HEAD request to check if the resource exists without downloading it
             const response = await fetch(url, {
-                method: 'GET', // More efficient check than GET
+                method: 'GET', 
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'ngrok-skip-browser-warning': 'true'
@@ -56,13 +56,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (!response.ok) {
-                // Try to get error message if possible, even from a HEAD request
-                const getResponse = await fetch(url, { headers: { 'Authorization': `Bearer ${token}` } });
-                const errorData = await getResponse.json();
+                const errorData = await response.json();
                 throw new Error(errorData.detail || 'Could not fetch attendance data.');
             }
 
-            // If HEAD request is successful, show the download button
+            downloadedBlob = await response.blob();
+
             resultsContainer.classList.remove('d-none');
 
         } catch (error) {
@@ -78,40 +77,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+
     // 2. Handle the "Download" button click
     downloadButton.addEventListener('click', async () => {
-        downloadButton.textContent = 'DOWNLOADING...';
-        downloadButton.disabled = true;
 
-        try {
-            const response = await fetch(currentUrl, {
-                method: 'GET',
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-
-            if (!response.ok) {
-                throw new Error('File download failed.');
-            }
-
-            const blob = await response.blob();
-            const downloadUrl = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.style.display = 'none';
-            a.href = downloadUrl;
-            // Name the file dynamically, e.g., attendance_2023-10-27.csv
-            a.download = `attendance_${new Date().toISOString().split('T')[0]}.csv`;
-            document.body.appendChild(a);
-            a.click();
-            window.URL.revokeObjectURL(downloadUrl);
-            a.remove();
-
-        } catch (error) {
-            console.error('Download Error:', error);
-            responseMessage.textContent = `Error: ${error.message}`;
-            responseMessage.className = 'message-area error';
-        } finally {
-            downloadButton.textContent = 'Download CSV File';
-            downloadButton.disabled = false;
+        if(!downloadedBlob){
+            return;
         }
+       
+        const downloadUrl = window.URL.createObjectURL(downloadedBlob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = downloadUrl;
+        // Name the file dynamically, e.g., attendance_2023-10-27.csv
+        a.download = `attendance_${new Date().toISOString().split('T')[0]}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(downloadUrl);
+        a.remove();
+
     });
 });
