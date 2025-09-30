@@ -82,19 +82,24 @@ document.addEventListener('DOMContentLoaded', () => {
     downloadButton.addEventListener('click', async () => {
 
         if(!downloadedBlob){
+            console.log("There is no data to be downloaded");
             return;
         }
-       
-        const downloadUrl = window.URL.createObjectURL(downloadedBlob);
-        const a = document.createElement('a');
-        a.style.display = 'none';
-        a.href = downloadUrl;
-        // Name the file dynamically, e.g., attendance_2023-10-27.csv
-        a.download = `attendance_${new Date().toISOString().split('T')[0]}.csv`;
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(downloadUrl);
-        a.remove();
+        
+        try{
+            const downloadUrl = window.URL.createObjectURL(downloadedBlob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = downloadUrl;
+            // Name the file dynamically, e.g., attendance_2023-10-27.csv
+            a.download = `attendance_${new Date().toISOString().split('T')[0]}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(downloadUrl);
+            a.remove();
+        } catch (error) {
+            console.log(`Client-side Error: ${error}`);
+        }
 
     });
 });

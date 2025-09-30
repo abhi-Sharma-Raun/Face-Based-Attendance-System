@@ -29,7 +29,7 @@ def fetch_attendance_rollno(roll_no:str, db: Session = Depends(get_db), current_
     try:
         attendance = db.query(models.Attendance).filter(models.Attendance.student_id == student.student_id).all()
         
-        attendance_record_list = [{"date":record.attendance_date.date()} for record in attendance]    
+        attendance_record_list = [record.attendance_date.date().isoformat() for record in attendance]    
         return {"data":attendance_record_list}
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Unexpected error: {str(e)}")
@@ -44,8 +44,6 @@ def fetch_attendance(db: Session = Depends(get_db), current_user: schemas.verifi
     
     if students is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"The teacher has no students")
-    
-    result = []
     
     output = io.StringIO()
     writer = csv.writer(output)
