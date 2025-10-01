@@ -1,0 +1,34 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app/app
+      - insightface_models:/app/models
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: postgres:15
+    ports:
+      - "5431:5432"
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=${database_username}
+      - POSTGRES_PASSWORD=${database_password}
+      - POSTGRES_DB=${database_name}
+
+  redis:
+    image: redis:7
+    volumes:
+      - redis_data:/data
+
+volumes:
+  postgresql_data:
+  redis_data:
+  insightface_models:
