@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!response.ok) {
                 const result = await response.json();
-                throw new Error(result.message || 'OTP verification failed.');
+                throw new Error(result.detail || 'OTP verification failed.');
             }
             
             // Transition to success step

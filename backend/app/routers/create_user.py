@@ -3,8 +3,9 @@ from sqlalchemy.orm import Session
 from .. import models, schemas, utils
 from ..database import get_db
 import smtplib
-from email.message import EmailMessage
+from sendgrid.helpers.mail import Mail
 from ..config import settings
+from .. import utils
 
 router = APIRouter(
     tags = ["Create Account"]
@@ -12,31 +13,22 @@ router = APIRouter(
 
 def account_confirmation(email_id:str, user_id:str, password:str):
     
-    message = EmailMessage()
-    message["To"] = email_id
-    message["From"] = f"{settings.email_Id}"  
-    message["Subject"] = "Account Confirmation"
-    message.set_content(f"""Your account is created successfully.
+    msg_content=f"""Your account is created successfully.
     User Id:  {user_id}.
     Password:  {password}.
-    """)    
+    """    
+    message = Mail(
+        from_email=settings.from_email_Id,
+        to_emails=email_id,
+        subject="Account Confirmation",
+        html_content=f'<body>{msg_content}</body>'
+    )
     try:
-        server = smtplib.SMTP("smtp.gmail.com", 587)
-        server.ehlo()
-    except:
-        print("Error in initialising the connection with smtp server")
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Unexpected error: {str(e)}")
-
-    try:
-        server.starttls()
-        server.ehlo()
-        server.login(f"{settings.email_Id}", f"{settings.email_id_app_password}")
-        server.send_message(message)
+        response = utils.sg.send(message)
+        print(response.status_code)
     except Exception as e:
-        print(f"error in establishing the connection with smtp server and sending the mail.The error is {str(e)}")
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Unexpected error: {str(e)}")
-    finally:    
-        server.close()
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"some error occurred: {str(e)}")
+
     
     
 @router.post("/verify-email-confirm-otp")
@@ -47,18 +39,18 @@ def verify_otp(otp_credentials: schemas.otpSchema, db: Session = Depends(get_db)
     try:
         stored_otp = utils.get_stored_otp(email)
     except:
-        raise HTTPException(status_code = status.HTTP_400_BAD_REQUEST, detail = "Redis error while fetching the otp")
+        raise HTTPException(status_code = status.HTTP_500_INTERNAL_SERVER_ERROR, detail = "Redis error while fetching the otp")
     
     if not stored_otp:
         raise HTTPException(status_code = status.HTTP_400_BAD_REQUEST, detail = "otp expired or not found")
     
-    if stored_otp.decode() != otp:
+    if stored_otp != str(otp):
         raise HTTPException(status_code = status.HTTP_400_BAD_REQUEST, detail = "Invalid otp")
     
     try:
         utils.delete_otp(email)
     except:
-        raise HTTPException(status_code = status.HTTP_400_BAD_REQUEST, detail = "error while deleting the otp")    
+        raise HTTPException(status_code = status.HTTP_500_INTERNAL_SERVER_ERROR, detail = "error while deleting the otp")    
       
     try:    
         verified_emails = db.query(models.VerifiedEmails).filter(models.VerifiedEmails.email_id == email).first()
@@ -69,15 +61,24 @@ def verify_otp(otp_credentials: schemas.otpSchema, db: Session = Depends(get_db)
         db.add(new_email)
         db.commit()
     except Exception as e:
+        print(str)
         raise HTTPException(status_code = status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Unexpected database Error: {str(e)}")
     
     return {"msg":"Email is valid and confirmed successfully"}
     
     
 @router.post("/send-email-verification-otp")
-def send_otp(email_input : schemas.EmailSchema):
-    
+def send_otp(email_input : schemas.EmailSchema, db: Session = Depends(get_db)):
     email = email_input.email
+    
+    try:
+        verified_emails = db.query(models.VerifiedEmails).filter(models.VerifiedEmails.email_id == email).first()
+    except Exception as e:
+        raise HTTPException(status_code = status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Unexpected database Error: {str(e)}")
+    
+    if verified_emails:
+        raise HTTPException(status_code = status.HTTP_400_BAD_REQUEST, detail="The email id is already registered")
+    
     try:
         utils.send_otp(email)
     except Exception as e :

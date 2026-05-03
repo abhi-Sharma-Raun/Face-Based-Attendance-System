@@ -36,7 +36,7 @@ def change_password(change_password_credentials: schemas.passwordChangeSchema, d
     if not stored_otp:
         raise HTTPException(status_code = status.HTTP_404_NOT_FOUND, detail = "The otp is invalid")
     
-    if stored_otp.decode() != otp:
+    if stored_otp != str(otp):
         raise HTTPException(status_code = status.HTTP_400_BAD_REQUEST, detail = "Invalid otp")
     
     utils.delete_otp(email)
