@@ -14,7 +14,7 @@ router = APIRouter(
 )
     
 
-face_app = FaceAnalysis(name="buffalo_l", providers = ['CUDAExecutionProvider', 'CPUExecutionProvider'], root = 'models')
+face_app = FaceAnalysis(name="buffalo_l", providers = ['CUDAExecutionProvider', 'CPUExecutionProvider'], root = '/')
 face_app.prepare(ctx_id=-1, det_size=(320,256), det_thresh = 0.5)
 
 face_attendance_threshold = settings.face_attendance_similarity_threshold
